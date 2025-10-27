@@ -7,7 +7,6 @@ DROP TABLE IF EXISTS clients CASCADE;
 DROP TABLE IF EXISTS testimonials_experience CASCADE;
 DROP TABLE IF EXISTS testimonials_home CASCADE;
 DROP TABLE IF EXISTS team_members CASCADE;
-DROP TABLE IF EXISTS posts_insights CASCADE;
 DROP TABLE IF EXISTS network_items CASCADE;
 DROP TABLE IF EXISTS theminermag_posts CASCADE;
 
@@ -93,23 +92,6 @@ INSERT INTO team_members (id, name, role, bio, image_url, linkedin_url, twitter_
 ('1', 'Nishant Sharma', 'Founder and Partner', 'Industry expert with deep knowledge of Bitcoin infrastructure and capital markets. Founded BlocksBridge to bring strategic communications expertise to Bitcoin miners and treasury companies.', 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop', 'https://www.linkedin.com/in/nishantsharma87/', 'https://x.com/nishantsharma87', 1),
 ('2', 'Jesse Colzani', 'Partner, Strategic Communications & Client Advisory', 'Senior communications strategist specializing in Bitcoin and energy sector messaging. Brings extensive experience in corporate narrative development and stakeholder engagement.', 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop', 'https://www.linkedin.com/in/jesse-cz/', '', 2),
 ('3', 'Wolfie Zhao', 'Head of Research - TheMinerMag', 'Leading research and analysis for TheMinerMag, providing data-driven insights into Bitcoin mining market structure and company performance.', 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop', '', 'https://x.com/WolfieZhao', 3);
-
--- Posts table (insights)
-CREATE TABLE posts_insights (
-  id SERIAL PRIMARY KEY,
-  title TEXT NOT NULL UNIQUE,
-  excerpt TEXT NOT NULL,
-  date TEXT NOT NULL,
-  category TEXT NOT NULL
-);
-
--- Insert posts data
-INSERT INTO posts_insights (title, excerpt, date, category) VALUES
-('Cipher, Bitfarms Lead Bitcoin Miners Rally After Jane Street Discloses Stakes', 'Shares of Cipher Mining, Bitfarms, and Hut 8 jumped on Thursday after trading firm Jane Street reveals significant positions...', 'October 24, 2025', 'Market Analysis'),
-('Miner Weekly: Bitcoin Mining Leaderboard Shakes up Ahead of Q3 Earnings', 'This week''s mining leaderboard shows significant shifts as companies prepare Q3 earnings announcements. Here''s what changed...', 'October 23, 2025', 'Mining News'),
-('Bitcoin Miner Argo to Delist from London Stock Exchange Amid Debt Restructuring', 'Argo Blockchain, one of the earliest publicly listed Bitcoin mining companies, announced plans to delist from LSE...', 'October 21, 2025', 'Corporate'),
-('HIVE Raises 2026 Target to 35 EH/s with Paraguay Bitcoin Mining Expansion', 'HIVE is expanding its operations in Paraguay with a new 100-megawatt bitcoin mine at its Ygua facility...', 'October 21, 2025', 'Operations'),
-('TeraWulf Prices Record $3.2B Bond Deal at 7.75%, Betting Big on AI Pivot', 'TeraWulf has priced its previously announced $3.2 billion senior secured note offering at 7.75%...', 'October 17, 2025', 'Finance');
 
 -- Network items table
 CREATE TABLE network_items (
