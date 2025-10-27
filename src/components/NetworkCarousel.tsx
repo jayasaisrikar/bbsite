@@ -46,35 +46,36 @@ export default function NetworkCarousel() {
   }
 
   return (
-    <div className="grid md:grid-cols-2 gap-12 items-center">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 items-center">
       {/* Left side - List */}
-      <div className="space-y-6">
+      <div className="space-y-3 md:space-y-6">
         {items.map((item) => (
           <div
             key={item.id}
             onMouseEnter={() => setActiveId(item.id)}
-            className={`cursor-pointer transition-all duration-300 p-6 rounded-lg ${
+            className={`cursor-pointer transition-all duration-300 p-3 sm:p-4 md:p-6 rounded-lg ${
               activeId === item.id
                 ? 'bg-blue-50 border-l-4 border-red-500'
                 : 'hover:bg-gray-50'
             }`}
           >
-            <h3 className="text-2xl font-bold mb-2">{item.title}</h3>
-            <p className="text-gray-600">{item.description}</p>
+            <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-1 md:mb-2">{item.title}</h3>
+            <p className="text-gray-600 text-sm md:text-base">{item.description}</p>
           </div>
         ))}
       </div>
 
       {/* Right side - Image */}
-      <div className="hidden md:block">
+      <div className="block md:block">
         {activeItem && (
-          <div className="relative h-[500px] rounded-lg overflow-hidden shadow-lg transition-all duration-300">
+          <div className="relative h-64 sm:h-80 md:h-[500px] rounded-lg overflow-hidden shadow-lg transition-all duration-300">
             <Image
               src={activeItem.image}
               alt={activeItem.title}
               fill
               className="object-cover"
               priority
+              sizes="(max-width: 768px) 100vw, 50vw"
             />
           </div>
         )}
