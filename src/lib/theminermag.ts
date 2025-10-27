@@ -68,7 +68,6 @@ export async function getLatestPosts(): Promise<MinerMagPost[]> {
       }
     }
 
-    // Return whatever posts we were able to extract (may be fewer than 6).
     return posts;
   } catch (webError) {
     console.error('Error fetching from web:', webError);
@@ -93,5 +92,3 @@ function extractDate(url: string): string {
     day: 'numeric'
   });
 }
-
-// Placeholder/fallback posts removed. If no sources return data, callers will receive [] instead of mock content.
