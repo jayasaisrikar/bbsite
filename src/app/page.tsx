@@ -67,7 +67,6 @@ export default async function Home() {
         className="relative min-h-screen md:h-[100vh] bg-center bg-cover md:bg-fixed text-white flex items-center justify-center overflow-hidden pt-24 md:pt-0"
         style={{ backgroundImage: "url('/images/hero-bg.png')" }}
       >
-        <div className="absolute inset-0 opacity-40 bg-gradient-to-br from-blue-900 via-blue-800 to-black"></div>
         <Reveal>
           <div className="relative z-10 max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-8 md:py-0">
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold mb-4 md:mb-6 leading-tight tracking-tight">
