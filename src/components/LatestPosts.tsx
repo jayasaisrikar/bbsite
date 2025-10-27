@@ -117,7 +117,7 @@ export default async function LatestPosts({ getPosts }: { getPosts?: any[] }) {
               <p className="text-sm md:text-base text-gray-600 mb-4 md:mb-6 line-clamp-3">{featured.rank_math_description ?? featured.excerpt?.rendered}</p>
               <Link
                 href={mapPostToCard(featured).link}
-                className="text-red-500 font-medium text-sm md:text-base hover:text-red-600 transition"
+                className="text-red-700 font-medium text-sm md:text-base hover:text-red-800 transition"
                 target={/http/.test(featured.link) ? '_blank' : undefined}
                 rel={/http/.test(featured.link) ? 'noopener noreferrer' : undefined}
               >
@@ -148,7 +148,7 @@ export default async function LatestPosts({ getPosts }: { getPosts?: any[] }) {
                 </div>
                 <div className="p-3 sm:p-4 md:p-6 flex flex-col flex-1">
                   <p className="text-xs md:text-sm text-gray-500 mb-2 md:mb-3 font-medium">{post.date ? new Date(post.date).toLocaleDateString() : ''}</p>
-                  <h4 className="text-base sm:text-lg md:text-lg font-bold mb-2 md:mb-3 line-clamp-3 leading-tight group-hover:text-red-500 transition-colors flex-1" dangerouslySetInnerHTML={{ __html: post.title }} />
+                  <h4 className="text-base sm:text-lg md:text-lg font-bold mb-2 md:mb-3 line-clamp-3 leading-tight group-hover:text-red-700 transition-colors flex-1" dangerouslySetInnerHTML={{ __html: post.title }} />
                   <p className="text-gray-600 text-xs md:text-sm line-clamp-2">{post.excerpt?.replace(/<[^>]+>/g, '')}</p>
                 </div>
               </Card>
@@ -157,10 +157,14 @@ export default async function LatestPosts({ getPosts }: { getPosts?: any[] }) {
         </div>
 
         <div className="text-center mt-8 md:mt-12">
-          <Link href="https://theminermag.com" target="_blank" rel="noopener noreferrer">
-            <button className="px-6 sm:px-8 py-2 md:py-3 bg-red-500 text-white rounded-lg hover:bg-blue-700 transition font-medium text-sm md:text-base">
-              View All Articles →
-            </button>
+          <Link
+            href="https://theminermag.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block px-6 sm:px-8 py-2 md:py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition font-medium text-sm md:text-base"
+            aria-label="View all articles on The Miner Mag (opens in a new tab)"
+          >
+            View All Articles →
           </Link>
         </div>
       </div>
