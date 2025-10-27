@@ -68,17 +68,16 @@ export async function getLatestPosts(): Promise<MinerMagPost[]> {
       }
     }
 
-    // If we didn't get 6 posts, try alternative parsing
-    if (posts.length < 6) {
-      return getEnhancedDefaultPosts();
-    }
-
+    // Return whatever posts we were able to extract (may be fewer than 6).
     return posts;
   } catch (webError) {
     console.error('Error fetching from web:', webError);
-    return getEnhancedDefaultPosts();
+    // On error, return an empty list (no placeholder/mock content).
+    return [];
   }
-}function extractDate(url: string): string {
+}
+
+function extractDate(url: string): string {
   const match = url.match(/\/(\d{4})-(\d{2})-(\d{2})\//);
   if (match) {
     const [, year, month, day] = match;
@@ -95,49 +94,4 @@ export async function getLatestPosts(): Promise<MinerMagPost[]> {
   });
 }
 
-function getEnhancedDefaultPosts(): MinerMagPost[] {
-  return [
-    {
-      title: 'Cipher, Bitfarms Lead Bitcoin Miners Rally After Jane Street Discloses Stakes',
-      url: 'https://theminermag.com/learn/2025-10-24/cipher-bitfarms-hut-jane-street-bitcoin',
-      date: 'Oct 24, 2025',
-      summary: 'Shares of Cipher Mining, Bitfarms, and Hut 8 jumped on Thursday after trading firm Jane Street disclosed stakes...',
-      image: 'https://images.unsplash.com/photo-1639762681033-6461ffad8d80?w=600&h=400&fit=crop'
-    },
-    {
-      title: 'Miner Weekly: Bitcoin Mining Leaderboard Shakes up Ahead of Q3 Earnings',
-      url: 'https://theminermag.com/news/2025-10-23/bitcoin-mining-q3-2025-leaderboard/',
-      date: 'Oct 23, 2025',
-      summary: 'This article first appeared in Miner Weekly, BlocksBridge Consulting\'s weekly newsletter covering Bitcoin mining...',
-      image: 'https://images.unsplash.com/photo-1518546305927-30bfcaaceb44?w=600&h=400&fit=crop'
-    },
-    {
-      title: 'Bitcoin Miner Argo to Delist from London Stock Exchange Amid Debt Restructuring',
-      url: 'https://theminermag.com/news/2025-10-21/argo-lse-delist-bitcoin/',
-      date: 'Oct 21, 2025',
-      summary: 'Argo Blockchain, one of the earliest publicly listed Bitcoin mining companies, announced delisting plans...',
-      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop'
-    },
-    {
-      title: 'HIVE Raises 2026 Target to 35 EH/s with Paraguay Bitcoin Mining Expansion',
-      url: 'https://theminermag.com/news/2025-10-21/hive-paraguay-35-exahash-bitcoin/',
-      date: 'Oct 21, 2025',
-      summary: 'HIVE is expanding its operations in Paraguay with a new 100-megawatt Bitcoin mine expansion plan...',
-      image: 'https://images.unsplash.com/photo-1551531206-5c2910dd6a13?w=600&h=400&fit=crop'
-    },
-    {
-      title: 'TeraWulf Prices Record $3.2B Bond Deal at 7.75%, Betting Big on AI Pivot',
-      url: 'https://theminermag.com/news/2025-10-17/terawulf-bitcoin-ai-note-pricing/',
-      date: 'Oct 17, 2025',
-      summary: 'TeraWulf has priced its previously announced $3.2 billion senior secured note offering at 7.75%...',
-      image: 'https://images.unsplash.com/photo-1592433707802-c2b08c0cbf37?w=600&h=400&fit=crop'
-    },
-    {
-      title: 'Core Scientific Reports Strong Q3 Bitcoin Mining Results',
-      url: 'https://theminermag.com/news/2025-10-20/core-scientific-q3/',
-      date: 'Oct 20, 2025',
-      summary: 'Core Scientific released positive quarterly results showing increased mining efficiency and hashrate...',
-      image: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=600&h=400&fit=crop'
-    }
-  ];
-}
+// Placeholder/fallback posts removed. If no sources return data, callers will receive [] instead of mock content.

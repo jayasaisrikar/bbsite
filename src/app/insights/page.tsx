@@ -10,16 +10,17 @@ export const metadata = {
 interface Post {
   id: number;
   title: string;
-  excerpt: string;
+  url: string;
   date: string;
-  category: string;
+  summary: string;
+  image?: string;
 }
 
 async function getPosts(): Promise<Post[]> {
   const { data, error } = await supabase
-    .from('posts_insights')
+    .from('theminermag_posts')
     .select('*')
-    .order('id');
+    .order('id', { ascending: false });
 
   if (error) {
     console.error('Error fetching posts:', error);
@@ -58,21 +59,21 @@ export default async function Insights() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="space-y-8">
             {posts.map((post, idx) => (
-              <Link key={idx} href="#" className="block group">
+              <Link key={idx} href={post.url} target="_blank" rel="noopener noreferrer" className="block group">
                 <div className="border-b border-gray-200 pb-8 hover:pb-6 transition">
                   <div className="flex items-start justify-between mb-3">
-                    <span className="inline-block bg-blue-100 text-blue-800 text-xs font-bold px-3 py-1 rounded">
-                      {post.category}
+                    <span className="inline-block bg-red-100 text-red-800 text-xs font-bold px-3 py-1 rounded">
+                      TheMinerMag
                     </span>
                     <span className="text-sm text-gray-500">{post.date}</span>
                   </div>
-                  <h2 className="text-2xl font-bold mb-3 group-hover:text-blue-600 transition">
+                  <h2 className="text-2xl font-bold mb-3 group-hover:text-red-600 transition">
                     {post.title}
                   </h2>
                   <p className="text-gray-600 mb-4 line-clamp-2">
-                    {post.excerpt}
+                    {post.summary}
                   </p>
-                  <span className="inline-block text-blue-600 font-medium group-hover:text-blue-800">
+                  <span className="inline-block text-red-600 font-medium group-hover:text-red-800">
                     Read more →
                   </span>
                 </div>

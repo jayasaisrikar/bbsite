@@ -7,7 +7,12 @@
       "use": "@vercel/next"
     }
   ],
-  
+  "crons": [
+    {
+      "path": "/api/cron/sync-posts",
+      "schedule": "0 2 * * *"
+    }
+  ],
   "routes": [
     {
       "src": "^/static/(.*)$",
