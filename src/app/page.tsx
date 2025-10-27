@@ -304,7 +304,7 @@ export default async function Home() {
   <section className="py-12 md:py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Reveal>
-            <h2 className="text-3xl sm:text-4xl md:text-4xl font-bold mb-8 md:mb-12 text-center">Meet Our Team</h2>
+            <h2 className="text-3xl sm:text-4xl md:text-4xl font-bold mb-8 md:mb-12 text-center">Meet Our <span className="text-red-500">Team</span></h2>
           </Reveal>
           <TeamMembers />
         </div>
