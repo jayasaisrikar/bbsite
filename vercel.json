@@ -30,11 +30,5 @@
         "strict-transport-security": "max-age=63072000; includeSubDomains; preload"
       }
     }
-  ],
-  "functions": {
-    "api/**/*.ts": {
-      "runtime": "nodejs18.x",
-      "maxDuration": 10
-    }
-  }
+  ]
 }
