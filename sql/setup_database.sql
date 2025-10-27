@@ -7,6 +7,7 @@ DROP TABLE IF EXISTS clients CASCADE;
 DROP TABLE IF EXISTS testimonials_experience CASCADE;
 DROP TABLE IF EXISTS testimonials_home CASCADE;
 DROP TABLE IF EXISTS team_members CASCADE;
+DROP TABLE IF EXISTS team CASCADE;
 DROP TABLE IF EXISTS network_items CASCADE;
 DROP TABLE IF EXISTS theminermag_posts CASCADE;
 
@@ -43,36 +44,25 @@ INSERT INTO clients (name) VALUES
 ('TeraWulf'),
 ('Core Scientific');
 
--- Testimonials table (experience page)
-CREATE TABLE testimonials_experience (
+-- Consolidated testimonials table (replaces testimonials_home & testimonials_experience)
+CREATE TABLE IF NOT EXISTS testimonials (
   id SERIAL PRIMARY KEY,
   quote TEXT NOT NULL,
   author TEXT NOT NULL,
   title TEXT NOT NULL,
   company TEXT NOT NULL,
-  UNIQUE(quote, author)
+  page TEXT NOT NULL, -- e.g. 'home' or 'experience'
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  UNIQUE (quote, author, page)
 );
 
--- Insert testimonials data
-INSERT INTO testimonials_experience (quote, author, title, company) VALUES
-('Our partnership with Blocksbridge provides actionable strategies, with accountability and consistent success. We wanted to better tell our own story, the Blocksbridge team helped us shape a narrative and pattern for effective communications, with measurable results. I have become a better business leader working with Blocksbridge.', 'Curtis Harris', 'Senior Director of Growth', 'Compass Mining'),
-('I like to say that I got my graduate training in Bitcoin from the BlocksBridge team. They''ve been in this industry longer than any other PR and communications firm and are hands down the best firm in the space. What''s more: they are among the smartest, generous, and thoughtful people I have ever worked with in my nearly-two decade career in communications and branding.', 'Isaac Holyoak', 'Chief Communications Officer', 'CleanSpark (NASDAQ: CLSK)'),
-('Working with BlocksBridge gave us confidence that our story was being told accurately and effectively to the right audiences.', 'John Doe', 'Chief Strategy Officer', 'Bitcoin Mining Firm');
-
--- Testimonials table (home page)
-CREATE TABLE testimonials_home (
-  id SERIAL PRIMARY KEY,
-  quote TEXT NOT NULL,
-  author TEXT NOT NULL,
-  title TEXT NOT NULL,
-  company TEXT NOT NULL,
-  UNIQUE(quote, author)
-);
-
--- Insert testimonials data
-INSERT INTO testimonials_home (quote, author, title, company) VALUES
-('Our partnership with Blocksbridge provides actionable strategies, with accountability and consistent success. We wanted to better tell our own story, the Blocksbridge team helped us shape a narrative and pattern for effective communications, with measurable results.', 'Curtis Harris', 'Senior Director of Growth', 'Compass Mining'),
-('I like to say that I got my graduate training in Bitcoin from the BlocksBridge team. They''ve been in this industry longer than any other PR and communications firm and are hands down the best firm in the space.', 'Isaac Holyoak', 'Chief Communications Officer', 'CleanSpark (NASDAQ: CLSK)');
+-- Insert consolidated testimonials (sample data)
+INSERT INTO testimonials (quote, author, title, company, page) VALUES
+('Our partnership with Blocksbridge provides actionable strategies, with accountability and consistent success. We wanted to better tell our own story, the Blocksbridge team helped us shape a narrative and pattern for effective communications, with measurable results. I have become a better business leader working with Blocksbridge.', 'Curtis Harris', 'Senior Director of Growth', 'Compass Mining', 'experience'),
+('I like to say that I got my graduate training in Bitcoin from the BlocksBridge team. They''ve been in this industry longer than any other PR and communications firm and are hands down the best firm in the space. What''s more: they are among the smartest, generous, and thoughtful people I have ever worked with in my nearly-two decade career in communications and branding.', 'Isaac Holyoak', 'Chief Communications Officer', 'CleanSpark (NASDAQ: CLSK)', 'experience'),
+('Working with BlocksBridge gave us confidence that our story was being told accurately and effectively to the right audiences.', 'John Doe', 'Chief Strategy Officer', 'Bitcoin Mining Firm', 'experience'),
+('Our partnership with Blocksbridge provides actionable strategies, with accountability and consistent success. We wanted to better tell our own story, the Blocksbridge team helped us shape a narrative and pattern for effective communications, with measurable results.', 'Curtis Harris', 'Senior Director of Growth', 'Compass Mining', 'home'),
+('I like to say that I got my graduate training in Bitcoin from the BlocksBridge team. They''ve been in this industry longer than any other PR and communications firm and are hands down the best firm in the space.', 'Isaac Holyoak', 'Chief Communications Officer', 'CleanSpark (NASDAQ: CLSK)', 'home');
 
 -- Team table
 CREATE TABLE team_members (

@@ -32,8 +32,9 @@ async function getClients(): Promise<string[]> {
 
 async function getTestimonials(): Promise<Testimonial[]> {
   const { data, error } = await supabase
-    .from('testimonials_experience')
+    .from('testimonials')
     .select('*')
+    .eq('page', 'experience')
     .order('id');
 
   if (error) {

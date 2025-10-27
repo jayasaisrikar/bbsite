@@ -24,8 +24,9 @@ interface Testimonial {
 
 async function getTestimonials(): Promise<Testimonial[]> {
   const { data, error } = await supabase
-    .from('testimonials_home')
+    .from('testimonials')
     .select('*')
+    .eq('page', 'home')
     .order('id');
 
   if (error) {
