@@ -60,6 +60,8 @@ export default function TestimonialsCarousel({ testimonials }: TestimonialsCarou
           size="icon"
           onClick={prev}
           className="rounded-full"
+          aria-label="Previous testimonial"
+          title="Previous testimonial"
         >
           <ChevronLeft className="w-4 h-4" />
         </Button>
@@ -72,6 +74,9 @@ export default function TestimonialsCarousel({ testimonials }: TestimonialsCarou
                 setCurrent(idx);
                 setAutoPlay(false);
               }}
+              aria-label={idx === current ? `Current testimonial, slide ${idx + 1}` : `Go to testimonial ${idx + 1}`}
+              aria-current={idx === current ? 'true' : undefined}
+              title={idx === current ? `Current testimonial (${idx + 1})` : `Go to testimonial ${idx + 1}`}
               className={`w-2 h-2 rounded-full transition-all ${
                 idx === current ? 'bg-red-500 w-8' : 'bg-gray-300'
               }`}
@@ -84,6 +89,8 @@ export default function TestimonialsCarousel({ testimonials }: TestimonialsCarou
           size="icon"
           onClick={next}
           className="rounded-full"
+          aria-label="Next testimonial"
+          title="Next testimonial"
         >
           <ChevronRight className="w-4 h-4" />
         </Button>
